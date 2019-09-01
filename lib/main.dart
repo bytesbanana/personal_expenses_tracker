@@ -39,17 +39,24 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Card(
-            color: Colors.blue,
-            child: Container(
-              width: double.infinity,
-              child: Text('Chart'),
+          Container(
+            width: double.infinity,
+            child: Card(
+              color: Colors.blue,
+              child: Container(
+                width: double.infinity,
+                child: Text('Chart'),
+              ),
+              elevation: 5,
             ),
-            elevation: 5,
           ),
-          Card(
-            child: Text('List of tx'),
-          ),
+          Column(
+            children: transactions.map((tx) {
+              return Card(
+                child: Text(tx.title),
+              );
+            }).toList(),
+          )
         ],
       ),
     );
