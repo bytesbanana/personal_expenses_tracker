@@ -1,6 +1,6 @@
-# personal_expenses_tracker
+# Personal expenses tracker
 
-A new Flutter project.
+Practice flutter project
 
 ## Getting Started
 
