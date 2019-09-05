@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses_tracker/models/transaction.dart';
+import 'package:personal_expenses_tracker/widgets/transactoin_list.dart';
 
 import 'new_transaction.dart';
-import 'transactoin_list.dart';
 
 class UserTransaction extends StatefulWidget {
   @override
@@ -14,19 +14,19 @@ class _UserTransactionState extends State<UserTransaction> {
     Transaction(
       id: 't1',
       title: 'New shoes',
-      amount: 1000,
+      amount: 1000.0,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't12',
       title: 'Gucci belt',
-      amount: 12000,
+      amount: 12000.0,
       date: DateTime.now(),
     ),
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
-    final newIx = Transaction(
+    final newTx = Transaction(
       title: txTitle,
       amount: txAmount,
       date: DateTime.now(),
@@ -34,7 +34,7 @@ class _UserTransactionState extends State<UserTransaction> {
     );
 
     setState(() {
-      _userTransactions.add(newIx);
+      _userTransactions.add(newTx);
     });
   }
 
@@ -42,7 +42,7 @@ class _UserTransactionState extends State<UserTransaction> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        NewTransaction(),
+        NewTransaction(_addNewTransaction),
         TransactonList(_userTransactions),
       ],
     );
