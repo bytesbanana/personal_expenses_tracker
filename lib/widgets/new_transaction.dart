@@ -34,7 +34,8 @@ class NewTransaction extends StatelessWidget {
               ),
               textColor: Colors.purple,
               onPressed: () {
-                // TODO: Add new transaction
+            
+            
                 print(titleController.text);
                 print(amountController.text);
               },
