@@ -4,11 +4,12 @@ import 'package:personal_expenses_tracker/models/transaction.dart';
 
 class TransactonList extends StatelessWidget {
   final List<Transaction> transactions;
-
+  BuildContext _context;
   TransactonList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Container(
       height: 250,
       child: buildListViewWithBuilder(),// Or use buildListViewWithChildren
@@ -43,7 +44,7 @@ class TransactonList extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.black,
+                color:Theme.of(_context).primaryColor,
                 width: 2,
               ),
             ),
@@ -53,7 +54,7 @@ class TransactonList extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                color: Colors.purple,
+                color: Theme.of(_context).primaryColor,
               ),
             ),
           ),

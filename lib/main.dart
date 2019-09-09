@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: MyHomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.green
+      ),
     );
   }
 }
@@ -69,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         title: Text('Flutter app'),
         actions: <Widget>[
           IconButton(
