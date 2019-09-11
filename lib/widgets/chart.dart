@@ -15,20 +15,23 @@ class Chart extends StatelessWidget {
 
       double totalSum = 0.0;
 
-      recentTransactions.forEach((element) {
-        if (element.date.day == weekDay.day &&
-            element.date.month == weekDay.month &&
-            element.date.year == weekDay.year) {
-          totalSum += element.amount;
+      for (var tx in recentTransactions) {
+        if (tx.date.day == weekDay.day &&
+            tx.date.month == weekDay.month &&
+            tx.date.year == weekDay.year) {
+          totalSum += tx.amount;
         }
-      });
+      }
+      print(DateFormat.E().format(weekDay));
+      print(totalSum);
 
-      return {'day': DateFormat.E(weekDay), 'amount': totalSum};
+      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print(groupedTransactionValues);
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
