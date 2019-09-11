@@ -11,18 +11,33 @@ class TransactonList extends StatelessWidget {
   Widget build(BuildContext context) {
     _context = context;
     return Container(
-      height: 250,
-      child: buildListViewWithBuilder(),// Or use buildListViewWithChildren
+      height: 300,
+      child: buildListViewWithBuilder(), // Or use buildListViewWithChildren
     );
   }
 
-  ListView buildListViewWithBuilder() {
-    return ListView.builder(
-      itemBuilder: (buildcontext, index) {
-        return buildTransactionCard(transactions[index]);
-      },
-      itemCount: transactions.length,
-    );
+  Widget buildListViewWithBuilder() {
+    return transactions.isEmpty
+        ? Column(
+            children: <Widget>[
+              Text('No transacton added'),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 200,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  )),
+            ],
+          )
+        : ListView.builder(
+            itemBuilder: (buildcontext, index) {
+              return buildTransactionCard(transactions[index]);
+            },
+            itemCount: transactions.length,
+          );
   }
 
   ListView buildListViewWithChildren() {
@@ -44,7 +59,7 @@ class TransactonList extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               border: Border.all(
-                color:Theme.of(_context).primaryColor,
+                color: Theme.of(_context).primaryColor,
                 width: 2,
               ),
             ),
