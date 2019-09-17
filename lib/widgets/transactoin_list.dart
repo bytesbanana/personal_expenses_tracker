@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_expenses_tracker/models/transaction.dart';
 
-class TransactonList extends StatelessWidget {
+class TransactonList extends StatefulWidget {
   final List<Transaction> transactions;
-  BuildContext _context;
+
   TransactonList(this.transactions);
 
   @override
+  _TransactonListState createState() => _TransactonListState();
+}
+
+class _TransactonListState extends State<TransactonList> {
+
+  @override
   Widget build(BuildContext context) {
-    _context = context;
     return Container(
       height: 300,
       child: buildListViewWithBuilder(), // Or use buildListViewWithChildren
@@ -17,7 +22,7 @@ class TransactonList extends StatelessWidget {
   }
 
   Widget buildListViewWithBuilder() {
-    return transactions.isEmpty
+    return widget.transactions.isEmpty
         ? Column(
             children: <Widget>[
               Text('No transacton added'),
@@ -34,15 +39,15 @@ class TransactonList extends StatelessWidget {
           )
         : ListView.builder(
             itemBuilder: (buildcontext, index) {
-              return buildTransactionCard(transactions[index]);
+              return buildTransactionCard(widget.transactions[index]);
             },
-            itemCount: transactions.length,
+            itemCount: widget.transactions.length,
           );
   }
 
   ListView buildListViewWithChildren() {
     return ListView(
-      children: transactions.map((tx) {
+      children: widget.transactions.map((tx) {
         return buildTransactionCard(tx);
       }).toList(),
     );
@@ -64,7 +69,7 @@ class TransactonList extends StatelessWidget {
         ),
         title: Text(
           tx.title,
-          style: Theme.of(_context).textTheme.title,
+          style: Theme.of(context).textTheme.title,
         ),
         subtitle: Text(DateFormat.yMMMd().format(tx.date)),
       ),
