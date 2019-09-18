@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
@@ -44,10 +45,18 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 4,
+          height: 20,
         ),
-        Text(label),
+        isToday(label)? Text(label,style: TextStyle(fontWeight: FontWeight.bold),):Text(label),
       ],
     );
+  }
+
+  bool isToday(String day) {
+    if (day ==
+        DateFormat.E().format(DateTime.now()).toString().substring(0, 1)) {
+      return true;
+    }
+    return false;
   }
 }
