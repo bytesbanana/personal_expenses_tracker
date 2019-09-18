@@ -3,5 +3,5 @@
 Practice flutter project
 
 
-![Empty transaction]https://github.com/RegalMan/personal_expenses_tracker/blob/master/picture/Capture.PNG
+![Empty transaction]https://raw.githubusercontent.com/RegalMan/personal_expenses_tracker/master/picture/Capture.PNG
 
