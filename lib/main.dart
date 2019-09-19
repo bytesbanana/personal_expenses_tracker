@@ -10,6 +10,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // final curScaleFactor = MediaQuery.of(context).textScaleFactor;
+
+    // print(curScaleFactor);
+
     return MaterialApp(
       title: 'Flutter Demo',
       home: MyHomePage(),
@@ -22,6 +26,7 @@ class MyApp extends StatelessWidget {
             title: TextStyle(
               fontFamily: 'OpenSans',
               fontWeight: FontWeight.bold,
+              // fontSize: 18 * curScaleFactor,
               fontSize: 18,
             ),
             button: TextStyle(color: Colors.white)),
@@ -108,23 +113,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Personal Expenses'),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {},
+        )
+      ],
+    );
+
+    var chartHeight = (MediaQuery.of(context).size.height -
+            appBar.preferredSize.height -
+            MediaQuery.of(context).padding.top) *
+        0.4;
+    var transactionListHeight = (MediaQuery.of(context).size.height -
+            appBar.preferredSize.height -
+            MediaQuery.of(context).padding.top) *
+        0.6;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Personal Expenses'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {},
-          )
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deletedTransaction)
+            Container(
+              height: chartHeight,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: transactionListHeight,
+              child: TransactionList(_userTransactions, _deletedTransaction),
+            )
           ],
         ),
       ),
