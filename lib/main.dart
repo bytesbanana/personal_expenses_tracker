@@ -134,11 +134,11 @@ class _MyHomePageState extends State<MyHomePage> {
     var chartHeight = (MediaQuery.of(context).size.height -
             appBar.preferredSize.height -
             MediaQuery.of(context).padding.top) *
-        0.5;
+        0.7;
     var transactionListHeight = (MediaQuery.of(context).size.height -
             appBar.preferredSize.height -
             MediaQuery.of(context).padding.top) *
-        0.5;
+        1;
 
     return Scaffold(
       appBar: appBar,
