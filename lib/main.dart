@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:personal_expenses_tracker/models/transaction.dart';
 import 'package:personal_expenses_tracker/widgets/chart.dart';
 import 'package:personal_expenses_tracker/widgets/new_transaction.dart';
@@ -74,6 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
+  bool _isChartShow = false;
+
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
@@ -146,14 +147,31 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: chartHeight,
-              child: Chart(_recentTransactions),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Show chart'),
+                Switch(
+                  value: _isChartShow,
+                  onChanged: (value) {
+                    setState(() {
+                      _isChartShow = value;
+                    });
+                    print(_isChartShow);
+                  },
+                )
+              ],
             ),
-            Container(
-              height: transactionListHeight,
-              child: TransactionList(_userTransactions, _deletedTransaction),
-            )
+            _isChartShow
+                ? Container(
+                    height: chartHeight,
+                    child: Chart(_recentTransactions),
+                  )
+                : Container(
+                    height: transactionListHeight,
+                    child:
+                        TransactionList(_userTransactions, _deletedTransaction),
+                  )
           ],
         ),
       ),
