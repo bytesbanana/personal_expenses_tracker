@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:personal_expenses_tracker/models/transaction.dart';
 import 'package:personal_expenses_tracker/widgets/chart.dart';
 import 'package:personal_expenses_tracker/widgets/new_transaction.dart';
 import 'package:personal_expenses_tracker/widgets/transactoin_list.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  // [Lec 119]: Controlling the Device Orientation
+  // SystemChrome.setPreferredOrientations(
+  //   [DeviceOrientation.portraitUp, DeviceOrientation.portraitUp],
+  // );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -126,11 +133,11 @@ class _MyHomePageState extends State<MyHomePage> {
     var chartHeight = (MediaQuery.of(context).size.height -
             appBar.preferredSize.height -
             MediaQuery.of(context).padding.top) *
-        0.4;
+        0.5;
     var transactionListHeight = (MediaQuery.of(context).size.height -
             appBar.preferredSize.height -
             MediaQuery.of(context).padding.top) *
-        0.6;
+        0.5;
 
     return Scaffold(
       appBar: appBar,
