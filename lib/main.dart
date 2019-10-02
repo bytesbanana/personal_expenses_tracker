@@ -3,6 +3,7 @@ import 'package:personal_expenses_tracker/models/transaction.dart';
 import 'package:personal_expenses_tracker/widgets/chart.dart';
 import 'package:personal_expenses_tracker/widgets/new_transaction.dart';
 import 'package:personal_expenses_tracker/widgets/transactoin_list.dart';
+import 'dart:io';
 
 void main() {
   // [Lec 119]: Controlling the Device Orientation
@@ -162,7 +163,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text('Show chart'),
-                  Switch(
+                  Switch.adaptive(
+                    activeColor: Theme.of(context).accentColor,
                     value: _isChartShow,
                     onChanged: (value) {
                       setState(() {
@@ -189,12 +191,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          startAddNewTransactoin(context);
-        },
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                startAddNewTransactoin(context);
+              },
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
